@@ -52,3 +52,25 @@ jobs:
 | `skip-forks`               | No       | `true`         | If `true`, skip PRs from forked repositories.                                     |
 
 ---
+
+
+## Shopify-only example
+
+If you primarily use this for PRs created by the Shopify app:
+```
+jobs:
+  auto-approve:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - uses: your-org/bot-only-pr-approver@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          allowed-bot-logins: shopify[bot]
+          require-pr-author-is-bot: true
+          skip-drafts: true
+          skip-forks: true
+```
