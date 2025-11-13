@@ -37,7 +37,7 @@ jobs:
 
     steps:
       - name: Auto-approve bot-only PRs
-        uses: your-org/bot-only-pr-approver@v1
+        uses: dfodeker/bot-only-pr-approver@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -57,7 +57,14 @@ jobs:
 ## Shopify-only example
 
 If you primarily use this for PRs created by the Shopify app:
-```
+```yaml
+name: Auto-approve bot-only PRs
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize, ready_for_review]
+
 jobs:
   auto-approve:
     runs-on: ubuntu-latest
@@ -66,7 +73,7 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: your-org/bot-only-pr-approver@v1
+      - uses: dfodeker/Auto_Approve_PRs@v1.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           allowed-bot-logins: shopify[bot]
